@@ -1,0 +1,105 @@
+{
+  "name": "Hello World",
+  "description": "",
+  "version": 2,
+  "private": true,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "clock",
+    "name": "scheduled_event",
+    "as": "882ab8e1",
+    "title": null,
+    "description": "<span class=\"provider\">Trigger</span> on a <span class=\"provider\">specified schedule</span>",
+    "keyword": "trigger",
+    "input": {
+      "time_unit": "minutes",
+      "trigger_every": "5"
+    },
+    "extended_input_schema": [
+      {
+        "control_type": "integer",
+        "default": "5",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Define repeating schedule. Enter whole numbers only.\n                        This field can be set to a minimum of 5 minutes.",
+        "label": "Trigger every",
+        "name": "trigger_every",
+        "optional": false,
+        "suffix": {
+          "text": "minutes"
+        },
+        "type": "string"
+      },
+      {
+        "control_type": "select",
+        "hint": "Select the timezone to use. Leave it blank to use <b>{{authUser.timezone}}</b>",
+        "label": "Timezone",
+        "name": "timezone",
+        "optional": true,
+        "pick_list": "timezone_id_global_pick_list",
+        "pick_list_connection_less": true,
+        "type": "string"
+      },
+      {
+        "control_type": "date_time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set date and time to start or leave blank to start immediately. <b>Once recipe has been run or tested, value cannot be changed.</b>",
+        "label": "Start after",
+        "name": "start_after",
+        "optional": true,
+        "parse_output": "date_time_conversion",
+        "since_field": true,
+        "type": "date_time",
+        "ignore_timezone": true,
+        "render_input": "date_time_conversion"
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "logger",
+        "name": "log_message",
+        "as": "062528f5",
+        "title": null,
+        "description": "Log <span class=\"provider\">message</span> to <span class=\"provider\">Job report</span>",
+        "keyword": "action",
+        "input": {
+          "user_logs_enabled": "false",
+          "message": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"clock\",\"line\":\"882ab8e1\",\"path\":[\"scheduled_time\"]}')}"
+        },
+        "extended_input_schema": [
+          {
+            "control_type": "switch",
+            "default": false,
+            "disable_formula": true,
+            "extends_schema": true,
+            "hint": "                Send a copy of the message to Workato logs.\n                <a href=\"https://docs.workato.com/features/logging-service.html\" target=\"_blank\" class=\"ng-scope\">\n                  Learn more\n                </a>\n",
+            "label": "Send to Workato log service",
+            "name": "user_logs_enabled",
+            "optional": true,
+            "type": "string"
+          }
+        ],
+        "uuid": "14890a76-292b-4ad3-8622-256c9e106e59"
+      }
+    ],
+    "uuid": "bacd6667-940b-4764-820a-5198e0f99bfb",
+    "unfinished": false
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "clock",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "logger",
+      "skip_validation": false,
+      "account_id": null
+    }
+  ]
+}
