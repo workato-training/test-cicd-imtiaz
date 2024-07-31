@@ -1,0 +1,5 @@
+# Documentation on the structure of this file
+# https://confluence.coinbase-corp.com/display/INFRA/Heimdall+CODEOWNERS
+
+#~ {"path": "*", "teams": {"@eaa-eng/eaa-integrations": {"required_reviews": 2}}}
+* @eaa-eng/eaa-integrations
